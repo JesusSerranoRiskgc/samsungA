@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{AE22367A-F9C4-4BB0-8713-0866294320A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnkaAPI", "EnkaAPI\EnkaAPI.csproj", "{5BE9047F-4FDA-45AE-9C23-A317EA969247}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CapaDatos", "CapaDatos", "{4C743047-ACE5-476C-8745-2AF86EA3507F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CapaNegocio", "CapaNegocio", "{0C5E7138-225D-45CE-918B-8D6759B77042}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CapaDTO", "CapaDTO", "{7BA6F54D-56EF-470C-BA80-6C5B4F6CB85F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{477CE784-C254-4A85-8DC8-E20B4D055C1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapaDTO", "CapaDTO\CapaDTO.csproj", "{E7A7CDEC-BD1E-4823-889A-0A0B9AC883FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapaNegocio", "CapaNegocio\CapaNegocio.csproj", "{2C89D469-77C6-44D5-8152-0EF36F5FAA5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BE9047F-4FDA-45AE-9C23-A317EA969247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BE9047F-4FDA-45AE-9C23-A317EA969247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BE9047F-4FDA-45AE-9C23-A317EA969247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BE9047F-4FDA-45AE-9C23-A317EA969247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{477CE784-C254-4A85-8DC8-E20B4D055C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{477CE784-C254-4A85-8DC8-E20B4D055C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{477CE784-C254-4A85-8DC8-E20B4D055C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{477CE784-C254-4A85-8DC8-E20B4D055C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A7CDEC-BD1E-4823-889A-0A0B9AC883FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A7CDEC-BD1E-4823-889A-0A0B9AC883FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A7CDEC-BD1E-4823-889A-0A0B9AC883FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A7CDEC-BD1E-4823-889A-0A0B9AC883FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C89D469-77C6-44D5-8152-0EF36F5FAA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C89D469-77C6-44D5-8152-0EF36F5FAA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C89D469-77C6-44D5-8152-0EF36F5FAA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C89D469-77C6-44D5-8152-0EF36F5FAA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5BE9047F-4FDA-45AE-9C23-A317EA969247} = {AE22367A-F9C4-4BB0-8713-0866294320A4}
+		{477CE784-C254-4A85-8DC8-E20B4D055C1C} = {4C743047-ACE5-476C-8745-2AF86EA3507F}
+		{E7A7CDEC-BD1E-4823-889A-0A0B9AC883FE} = {7BA6F54D-56EF-470C-BA80-6C5B4F6CB85F}
+		{2C89D469-77C6-44D5-8152-0EF36F5FAA5F} = {0C5E7138-225D-45CE-918B-8D6759B77042}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D08BA7AD-C024-48CF-8120-10348488BAB5}
+	EndGlobalSection
+EndGlobal
