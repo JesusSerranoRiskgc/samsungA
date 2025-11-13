@@ -563,7 +563,8 @@ namespace EnkaAPI.Controllers.RegistroFormulario
         public async Task<IActionResult> UploadFiles([FromForm] IFormCollection form)
         {
             var idFormulario = form["IdFormulario"].ToString();
-            var uploadRoot = Path.Combine("ArchivosAdjuntos", idFormulario); // Carpeta base de almacenamiento
+            var relativeRoot = Path.Combine("ArchivosAdjuntos", idFormulario);
+            var uploadRoot = Path.Combine(_env.ContentRootPath, relativeRoot);
 
             // Verifica si la carpeta de destino existe, si no, la crea
             if (!Directory.Exists(uploadRoot))
@@ -591,7 +592,7 @@ namespace EnkaAPI.Controllers.RegistroFormulario
                         Id = 0,
                         IdFormulario = int.Parse(idFormulario),
                         NombreArchivo = file.FileName,
-                        RutaArchivo = filePath,
+                        RutaArchivo = Path.Combine(relativeRoot, file.FileName),
                         TipoArchivo = file.ContentType,
                         FechaSubida = DateTime.Now.ToString()
                       };
@@ -615,7 +616,8 @@ namespace EnkaAPI.Controllers.RegistroFormulario
             if (file == null || file.Length == 0)
                 return BadRequest("Archivo no encontrado.");
 
-            var uploadRoot = Path.Combine("ArchivosAdjuntos", idFormulario.ToString()); // Carpeta base de almacenamiento
+            var relativeRoot = Path.Combine("ArchivosAdjuntos", idFormulario.ToString());
+            var uploadRoot = Path.Combine(_env.ContentRootPath, relativeRoot); // Carpeta base de almacenamiento
 
             try
             {
@@ -641,7 +643,7 @@ namespace EnkaAPI.Controllers.RegistroFormulario
                 archivo.extencion = Path.GetExtension(file.FileName);
                 archivo.NombreArchivo = Path.GetFileNameWithoutExtension(file.FileName);
                 archivo.peso = tamanio.ToString();
-                archivo.Ubicacion = filePath;
+                archivo.Ubicacion = Path.Combine(relativeRoot, file.FileName);
                 archivo.Key = key;
                 archivo.IdFormulario=idFormulario;
 
@@ -676,7 +678,8 @@ namespace EnkaAPI.Controllers.RegistroFormulario
         [HttpGet("obtener-archivos/{idFormulario}")]
         public IActionResult ObtenerArchivos(string idFormulario)
         {
-            var directoryPath = Path.Combine("ArchivosAdjuntos", idFormulario);
+            var relativePath = Path.Combine("ArchivosAdjuntos", idFormulario);
+            var directoryPath = Path.Combine(_env.ContentRootPath, relativePath);
             if (!Directory.Exists(directoryPath))
             {
                 return NotFound(new { message = "No se encontraron archivos." });
@@ -686,7 +689,7 @@ namespace EnkaAPI.Controllers.RegistroFormulario
                 .Select(filePath => new
                 {
                     NombreArchivo = Path.GetFileName(filePath),
-                    RutaArchivo = filePath,
+                    RutaArchivo = Path.Combine(relativePath, Path.GetFileName(filePath)),
                     // Aquí puedes agregar más propiedades si es necesario
                 }).ToList();
 
@@ -973,6 +976,15 @@ namespace EnkaAPI.Controllers.RegistroFormulario
                     return NotFound(new { error = "La ruta del archivo no está disponible" });
                 }
 
+                if (!Path.IsPathRooted(rutaArchivo))
+                {
+                    rutaArchivo = Path.Combine(_env.ContentRootPath, rutaArchivo);
+                }
+                else
+                {
+                    rutaArchivo = Path.GetFullPath(rutaArchivo);
+                }
+
                 // Verificar si el archivo físico existe
                 bool archivoExiste = System.IO.File.Exists(rutaArchivo);
                 Console.WriteLine($"Archivo físico existe: {archivoExiste}, Ruta: {rutaArchivo}");
@@ -981,11 +993,12 @@ namespace EnkaAPI.Controllers.RegistroFormulario
                 {
                     // Intentar con ruta relativa si la absoluta no funciona
                     var rutaRelativa = Path.Combine("ArchivosAdjuntos", idFormulario.ToString(), archivo.NombreArchivo + archivo.extencion);
-                    Console.WriteLine($"Intentando ruta relativa: {rutaRelativa}");
+                    var rutaRelativaAbsoluta = Path.Combine(_env.ContentRootPath, rutaRelativa);
+                    Console.WriteLine($"Intentando ruta relativa: {rutaRelativaAbsoluta}");
 
-                    if (System.IO.File.Exists(rutaRelativa))
+                    if (System.IO.File.Exists(rutaRelativaAbsoluta))
                     {
-                        rutaArchivo = rutaRelativa;
+                        rutaArchivo = rutaRelativaAbsoluta;
                         Console.WriteLine("Archivo encontrado en ruta relativa");
                     }
                     else
